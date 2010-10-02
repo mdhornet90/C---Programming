@@ -51,13 +51,19 @@ void TString::assign(char *str)
         delete mpText;
         mpText = new char[strlen(str) + 1]; 
         mpText = str;
+        mpText[strlen(str)] = '\0';
     }
 }
 
 void TString::append(const TString& str)
 {
+    int i;
+    i = indexOf('\0');
+    mpText[i] = ' ';
     
     mpText = new char[strlen(str.mpText) + 1];   
+    
+    for ( i 
 }
 
 int TString::indexOf(char first)
