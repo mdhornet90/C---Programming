@@ -36,7 +36,7 @@ void TString::assign(TString& str)
         return;
     else
     {
-        char *tmp = mpText;
+        char *tmp
         mpText = new char[strlen(str.mpText) + 1]; 
         strcpy(mpText, str.mpText);
         delete tmp;
