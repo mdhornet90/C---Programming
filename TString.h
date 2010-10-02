@@ -5,16 +5,16 @@
 class TString 
 { // Prefix with 'T' for uniqueness
     public:
-        TString(char **pText = 0); // default ctor
-        TString(const TString& str);
+        TString(const char *pText = 0); // default ctor
+        TString(TString& str);
         ~TString();
-        int length();
+        const int length();
         const char* asChar();
-        void assign(TString& str);
+        void assign(const TString& str);
         void assign(char *str);
         void append(const TString& str);
-        bool equals(char *compare);
-        bool equalsIgnoreCase(char *compare);
+        bool equals(const TString& compare);
+        bool equalsIgnoreCase(const TString& compare);
         int indexOf(char first);
             
     private:

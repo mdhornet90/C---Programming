@@ -39,7 +39,7 @@ const char* TString::asChar()
     return mpText;
 }
 
-void TString::assign(TString& str)
+void TString::assign(const TString& str)
 {
     if (*mpText == *str.mpText)
         return;
@@ -54,7 +54,7 @@ void TString::assign(TString& str)
 
 void TString::assign(char *str)
 {
-    if (*mpText == *str)
+    if (*mpText == *str || *str == '\0')
         return;
     else
     {   
@@ -84,6 +84,21 @@ void TString::append(const TString& str)
     }    
 }
 
+bool TString::equals(const TString& compare)
+{
+    if (!strcmp(this->mpText, compare.mpText))
+        return true;
+    else
+        return false;
+}
+
+bool TString::equalsIgnoreCase(const TString& compare)
+{
+    if (!stricmp(this->mpText, compare.mpText))
+        return true;
+    else
+        return false;
+}
 int TString::indexOf(char first)
 {
     int i = 0;
