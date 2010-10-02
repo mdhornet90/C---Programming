@@ -51,6 +51,7 @@ using std::endl;
 using std::flush;
 using std::hex;
 using std::ios;
+using namespace std;
 
 // Note - If you are not using Microsoft Visual Studio, you may need to uncomment the following
 // code for this test program to compile. strcpy_s is Microsoft's secure replacement for strcpy

@@ -2,18 +2,26 @@
 #include "TString.h"
 #include <string> //Only used for the approved functions, I SWEAR
 
-TString::TString(const char *pText) 
+
+TString::TString() 
 {
-    if (0 == pText) 
+    mpText = '\0';
+        
+    mLength = strlen(mpText);
+}
+
+TString::TString(const char *pText = NULL)
+{
+    if ("" == pText) //Literal empty string
         mpText = '\0';
         
     mLength = strlen(mpText);
 }
 
-TString::TString(TString& str)
+TString::TString(const TString& str)
 {   
-    if ( str.mpText == 0 )
-        str.mpText = "";
+    if ( 0 == str.mpText )
+        mpText = '\0';
         
     mpText = new char[strlen(str.mpText) + 1]; 
     strcpy(mpText, str.mpText);
@@ -28,13 +36,13 @@ TString::~TString()
     mLength = strlen(mpText);
 }
 
-const int TString::length()
+int TString::length() const
 {   
-    mLength = strlen(mpText);
+    //mLength = strlen(mpText);
     return mLength;
 }
 
-const char* TString::asChar()
+char* TString::asChar() const
 {
     return mpText;
 }
@@ -84,7 +92,7 @@ void TString::append(const TString& str)
     }    
 }
 
-bool TString::equals(const TString& compare)
+bool TString::equals(const TString& compare) const
 {
     if (!strcmp(this->mpText, compare.mpText))
         return true;
@@ -92,20 +100,20 @@ bool TString::equals(const TString& compare)
         return false;
 }
 
-bool TString::equalsIgnoreCase(const TString& compare)
+bool TString::equalsIgnoreCase(const TString& compare) const
 {
     if (!stricmp(this->mpText, compare.mpText))
         return true;
     else
         return false;
 }
-int TString::indexOf(char first)
+int TString::indexOf(char first) const
 {
     int i = 0;
     
     while ( *mpText != first )
     {
-        mpText++;
+        mpText[i]++;
         i++;
     }
     
