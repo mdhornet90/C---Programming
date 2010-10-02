@@ -36,11 +36,7 @@ void TString::assign(TString& str)
         return;
     else
     {
-<<<<<<< HEAD
-        char *tmp
-=======
         delete mpText;
->>>>>>> c095f84cff92d41c3a98708cbadbe931c100b74c
         mpText = new char[strlen(str.mpText) + 1]; 
         strcpy(mpText, str.mpText);
     }
@@ -52,10 +48,10 @@ void TString::assign(char *str)
         return;
     else
     {   
+        delete mpText;
         mpText = new char[strlen(str) + 1]; 
         mpText = str;
     }
-    delete mpText;
 }
 
 void TString::append(const TString& str)
