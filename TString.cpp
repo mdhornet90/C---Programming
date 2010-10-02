@@ -2,9 +2,9 @@
 #include "TString.h"
 #include <string> //Only used for the approved functions, I SWEAR
 
-TString::TString(char **pText) 
+TString::TString(const char *pText) 
 {
-    if (0 == *pText) 
+    if (0 == pText) 
         mpText = '\0';
         
     mLength = strlen(mpText);
@@ -28,8 +28,9 @@ TString::~TString()
     mLength = strlen(mpText);
 }
 
-int TString::length()
+const int TString::length()
 {   
+    mLength = strlen(mpText);
     return mLength;
 }
 
@@ -67,7 +68,7 @@ void TString::assign(char *str)
 
 void TString::append(const TString& str)
 {
-    int i = strlen(mpText) + 1, j;
+    int i = strlen(mpText), j;
     if (*mpText == *str.mpText)
         return;
     else if ( str.mpText == "" )
@@ -75,9 +76,11 @@ void TString::append(const TString& str)
     else
     {
         mpText[i] = ' ';
+        i++;
         mpText = new char[strlen(str.mpText) + 1];   
-        for ( i = strlen(mpText), j = 0; str.mpText[j] != '\0'; i++, j++ )
+        for ( i, j = 0; str.mpText[j] != '\0'; i++, j++ )
             mpText[i] = str.mpText[j];
+        
     }    
 }
 
