@@ -6,18 +6,26 @@ TString::TString(char **pText)
 {
     if (0 == *pText) 
         mpText = '\0';
+        
+    mLength = strlen(mpText);
 }
 
-TString::TString(const TString& str)
+TString::TString(TString& str)
 {   
+    if ( str.mpText == 0 )
+        str.mpText = "";
+        
     mpText = new char[strlen(str.mpText) + 1]; 
-    strcpy(mpText, str.mpText); 
+    strcpy(mpText, str.mpText);
+    mLength = strlen(mpText);
 }
 
 TString::~TString()
 {
     delete mpText;
-    mpText = '\0';
+    mpText = 0;
+    
+    mLength = strlen(mpText);
 }
 
 int TString::length()
@@ -39,6 +47,7 @@ void TString::assign(TString& str)
         delete mpText;
         mpText = new char[strlen(str.mpText) + 1]; 
         strcpy(mpText, str.mpText);
+        mLength = strlen(mpText);
     }
 }
 
@@ -52,18 +61,24 @@ void TString::assign(char *str)
         mpText = new char[strlen(str) + 1]; 
         mpText = str;
         mpText[strlen(str)] = '\0';
+        mLength = strlen(mpText);
     }
 }
 
 void TString::append(const TString& str)
 {
-    int i;
-    i = indexOf('\0');
-    mpText[i] = ' ';
-    
-    mpText = new char[strlen(str.mpText) + 1];   
-    
-    for ( i 
+    int i = strlen(mpText) + 1, j;
+    if (*mpText == *str.mpText)
+        return;
+    else if ( str.mpText == "" )
+        return;
+    else
+    {
+        mpText[i] = ' ';
+        mpText = new char[strlen(str.mpText) + 1];   
+        for ( i = strlen(mpText), j = 0; str.mpText[j] != '\0'; i++, j++ )
+            mpText[i] = str.mpText[j];
+    }    
 }
 
 int TString::indexOf(char first)
