@@ -5,9 +5,9 @@
 
 TString::TString() 
 {
-    mpText = '\0';
+    this->mpText = '\0';
         
-    mLength = strlen(mpText);
+    this->mLength = 0;
 }
 
 TString::TString(const char *pText = NULL)
