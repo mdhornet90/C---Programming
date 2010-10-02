@@ -36,10 +36,13 @@ void TString::assign(TString& str)
         return;
     else
     {
+<<<<<<< HEAD
         char *tmp
+=======
+        delete mpText;
+>>>>>>> c095f84cff92d41c3a98708cbadbe931c100b74c
         mpText = new char[strlen(str.mpText) + 1]; 
         strcpy(mpText, str.mpText);
-        delete tmp;
     }
 }
 
