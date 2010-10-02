@@ -56,5 +56,19 @@ void TString::assign(char *str)
 
 void TString::append(const TString& str)
 {
+    
     mpText = new char[strlen(str.mpText) + 1];   
+}
+
+int TString::indexOf(char first)
+{
+    int i = 0;
+    
+    while ( *mpText != first )
+    {
+        mpText++;
+        i++;
+    }
+    
+    return i;
 }
