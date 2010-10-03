@@ -33,7 +33,7 @@ TString::~TString()
     delete mpText;
     mpText = 0;
     
-    mLength = strlen(mpText);
+    mLength = 0;
 }
 
 int TString::length() const
@@ -79,14 +79,14 @@ void TString::append(const TString& str)
     int i = strlen(mpText), j;
     if (*mpText == *str.mpText)
         return;
-    else if ( str.mpText == "" )
+    else if ( !strcmp(str.mpText, "") )
         return;
     else
     {
         mpText[i] = ' ';
         i++;
         mpText = new char[strlen(str.mpText) + 1];   
-        for ( i, j = 0; str.mpText[j] != '\0'; i++, j++ )
+        for ( j = 0; str.mpText[j] != '\0'; i++, j++ )
             mpText[i] = str.mpText[j];
         
     }    
