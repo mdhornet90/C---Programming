@@ -84,17 +84,23 @@ void TString::append(const TString& str)
 {
     int i = strlen(mpText);
     char *tmp;
-    if (*mpText == *str.mpText)
+    if (*mpText == *str.mpText)\
+    {
+        mLength = strlen(mpText);
         return;
+    }
     else if ( !strcmp(str.mpText, "") )
+    {
+        mLength = 0;
         return;
+    }
     else
     {
-        mpText[i] = ' ';
         tmp = mpText;
         mpText = new char[strlen(mpText) + strlen(str.mpText) + 1];   
-        strcpy( mpText + i + 1, str.mpText);
         strcpy(mpText, tmp);
+        strcpy( mpText + i + 1, str.mpText);
+        mLength = strlen(mpText);
     }    
 }
 
