@@ -86,8 +86,8 @@ void TString::append(const TString& str)
     else
     {
         mpText[i] = ' ';
-        mpText = new char[strlen(str.mpText) + 1];   
-        strcpy(mpText, str.mpText);
+        mpText = new char[strlen(mpText) + strlen(str.mpText) + 1];   
+        strcpy( mpText[i+1], str.mpText);
     }    
 }
 
