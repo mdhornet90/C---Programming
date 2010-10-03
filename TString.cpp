@@ -55,8 +55,11 @@ char* TString::asChar() const
 
 void TString::assign(const TString& str)
 {
-    if (*mpText == *str.mpText)
+    if (mpText == str.mpText)
+    {
+        mLength = strlen(mpText);
         return;
+    }
     else
     {
         delete mpText;
@@ -89,7 +92,7 @@ void TString::append(const TString& str)
         mLength = strlen(mpText);
         return;
     }
-    else if ( !strcmp(str.mpText, "") )
+    else if ( !strcmp(str.mpText, "") || str.mpText == 0 )
     {
         mLength = 0;
         return;
