@@ -75,14 +75,13 @@ void TString::assign(const TString& str)
 
 void TString::assign(char *str)
 {
-    if (*mpText == *str || *str == '\0')
+    if (mpText == str || str == '\0')
         return;
     else
     {   
         delete mpText;
         mpText = new char[strlen(str) + 1]; 
-        mpText = str;
-        mpText[strlen(str)] = '\0';
+        strcpy(mpText,str);
         mLength = strlen(mpText);
     }
 }
@@ -130,8 +129,7 @@ int TString::indexOf(char first) const
 {
     int i;
     
-    for ( i = 0; mpText[i] != first || mpText[i] != '\0'; i++)
-        mpText[i]++;
+    for ( i = 0; mpText[i] != first && mpText[i] != '\0'; i++);
     
     if ( mpText[i] == '\0' )
         return -1;
