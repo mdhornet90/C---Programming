@@ -78,7 +78,8 @@ void TString::assign(char *str)
 
 void TString::append(const TString& str)
 {
-    int i = strlen(mpText), j;
+    int i = strlen(mpText);
+    char *tmp;
     if (*mpText == *str.mpText)
         return;
     else if ( !strcmp(str.mpText, "") )
@@ -86,8 +87,11 @@ void TString::append(const TString& str)
     else
     {
         mpText[i] = ' ';
+        tmp = mpText;
+        strcpy( tmp, mpText );
         mpText = new char[strlen(mpText) + strlen(str.mpText) + 1];   
-        strcpy( mpText[i+1], str.mpText);
+        strcpy( mpText = mpText + i + 1, str.mpText);
+        strcpy(mpText, tmp);
     }    
 }
 
