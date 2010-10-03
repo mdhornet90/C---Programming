@@ -5,8 +5,8 @@
 
 TString::TString() 
 {
+    mpText = new char;
     this->mpText = '\0';
-        
     this->mLength = 0;
 }
 
