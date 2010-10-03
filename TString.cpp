@@ -12,19 +12,23 @@ TString::TString()
 
 TString::TString(const char *pText = NULL)
 {
-    if (0 == pText){
+    if ( 0 == pText )
+    {
         mpText = new char[0];
         mpText = "";
-    }
-    mLength = strlen(pText);
-    *mpText = *pText;
+    }   
+    mpText = new char[strlen(pText) + 1]; 
+    strcpy(mpText, pText);
+    mLength = strlen(mpText);
 }
 
 TString::TString(const TString& str)
 {   
     if ( 0 == str.mpText )
-        mpText = '\0';
-        
+    {
+        mpText = new char[0];
+        mpText = "";
+    }   
     mpText = new char[strlen(str.mpText) + 1]; 
     strcpy(mpText, str.mpText);
     mLength = strlen(mpText);
@@ -32,8 +36,8 @@ TString::TString(const TString& str)
 
 TString::~TString()
 {
-    /*delete mpText;
-    mpText = 0; */
+    delete mpText;
+    mpText = 0;
     
     mLength = 0;
 }
@@ -88,9 +92,8 @@ void TString::append(const TString& str)
     {
         mpText[i] = ' ';
         tmp = mpText;
-        strcpy( tmp, mpText );
         mpText = new char[strlen(mpText) + strlen(str.mpText) + 1];   
-        strcpy( mpText = mpText + i + 1, str.mpText);
+        strcpy( mpText + i + 1, str.mpText);
         strcpy(mpText, tmp);
     }    
 }
