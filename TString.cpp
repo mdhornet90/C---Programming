@@ -16,10 +16,14 @@ TString::TString(const char *pText = NULL)
     {
         mpText = new char[0];
         mpText = "";
-    }   
-    mpText = new char[strlen(pText) + 1]; 
-    strcpy(mpText, pText);
-    mLength = strlen(mpText);
+        return;
+    }
+    else
+    {   
+        mpText = new char[strlen(pText) + 1]; 
+        strcpy(mpText, pText);
+        mLength = strlen(mpText);
+    }
 }
 
 TString::TString(const TString& str)
@@ -124,13 +128,13 @@ bool TString::equalsIgnoreCase(const TString& compare) const
 }
 int TString::indexOf(char first) const
 {
-    int i = 0;
+    int i;
     
-    while ( *mpText != first )
-    {
+    for ( i = 0; mpText[i] != first || mpText[i] != '\0'; i++)
         mpText[i]++;
-        i++;
-    }
     
-    return i;
+    if ( mpText[i] == '\0' )
+        return -1;
+    else
+        return i;
 }
