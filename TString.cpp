@@ -16,7 +16,7 @@ TString::TString(const char *pText = NULL)
         mpText = new char[0];
         mpText = "";
     }
-    mLength = strlen(mpText);
+    mLength = strlen(pText);
     //mpText = ...
 }
 
