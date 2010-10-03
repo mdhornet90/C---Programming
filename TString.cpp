@@ -1,6 +1,6 @@
 // -- TString.cpp source file --
 #include "TString.h"
-#include <string> //Only used for the approved functions, I SWEAR
+#include <string.h> //Only used for the approved functions, I SWEAR
 
 
 TString::TString() 
@@ -102,7 +102,7 @@ bool TString::equals(const TString& compare) const
 
 bool TString::equalsIgnoreCase(const TString& compare) const
 {
-    if (!stricmp(this->mpText, compare.mpText))
+    if (!strcasecmp(this->mpText, compare.mpText))
         return true;
     else
         return false;
