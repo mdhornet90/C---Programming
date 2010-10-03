@@ -99,7 +99,7 @@ void TString::append(const TString& str)
         tmp = mpText;
         mpText = new char[strlen(mpText) + strlen(str.mpText) + 1];   
         strcpy(mpText, tmp);
-        strcpy( mpText + i + 1, str.mpText);
+        strcpy( mpText + i, str.mpText);
         mLength = strlen(mpText);
     }    
 }
