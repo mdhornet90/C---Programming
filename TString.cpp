@@ -12,10 +12,12 @@ TString::TString()
 
 TString::TString(const char *pText = NULL)
 {
-    if (0 == pText)
-        mpText = '\0';
-        
+    if (0 == pText){
+        mpText = new char[0];
+        mpText = "";
+    }
     mLength = strlen(mpText);
+    //mpText = ...
 }
 
 TString::TString(const TString& str)
@@ -33,7 +35,7 @@ TString::~TString()
     delete mpText;
     mpText = 0;
     
-    mLength = strlen(mpText);
+    mLength = 0;
 }
 
 int TString::length() const
